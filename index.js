@@ -16,6 +16,10 @@ const routerFootwear = require("./routes/footwear");
 const routerHat = require("./routes/hat");
 const routerBag = require("./routes/bag");
 
+app.get("/", (req, res) => {
+  res.json("Hello");
+});
+
 app.use("/collections/all", routerAll);
 app.use("/collections/top", routerTop);
 app.use("/collections/bottom", routerBottom);
