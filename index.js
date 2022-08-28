@@ -3,10 +3,19 @@ const app = express();
 const cors = require("cors");
 const axios = require("axios");
 const cheerio = require("cheerio");
+const bodyParser = require("body-parser");
 
 const url = "https://hades.vn/products/";
 
 app.use(cors());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
 
 const routerAll = require("./routes/all");
 const routerTop = require("./routes/top");

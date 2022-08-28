@@ -7,10 +7,10 @@ const cheerio = require("cheerio");
 const url = "https://hades.vn/collections/all#l=vi";
 
 // [GET] all products
-router.get("/", (req, resp) => {
+router.get("/", async (req, resp) => {
   const allProducts = [];
   try {
-    axios(url).then((res) => {
+    await axios(url).then((res) => {
       const html = res.data;
       const $ = cheerio.load(html);
       $(".product-block", html).each(function () {
