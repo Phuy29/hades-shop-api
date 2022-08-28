@@ -10,28 +10,27 @@ const url = "https://hades.vn/collections/all#l=vi";
 router.get("/", async (req, resp) => {
   const allProducts = [];
   try {
-    await axios(url).then((res) => {
-      const html = res.data;
-      const $ = cheerio.load(html);
-      $(".product-block", html).each(function () {
-        const name = $(this).find(".pro-name > a").attr("title");
-        const href = $(this).find(".pro-name > a").attr("href");
-        const price = $(this)
-          .find(".pro-price")
-          .text()
-          .split("\n\t\t\t\t\t\t\n\t\t\t\t\t")[0];
-        const imgUrl = $(this).find(".img-loop").attr("src");
-        const imgHover = $(this).find(".img-hover").attr("src");
-        allProducts.push({
-          name,
-          href,
-          price,
-          imgUrl,
-          imgHoverUrl: imgHover,
-        });
+    const res = await axios(url);
+    const html = await res.data;
+    const $ = cheerio.load(html);
+    $(".product-block", html).each(function () {
+      const name = $(this).find(".pro-name > a").attr("title");
+      const href = $(this).find(".pro-name > a").attr("href");
+      const price = $(this)
+        .find(".pro-price")
+        .text()
+        .split("\n\t\t\t\t\t\t\n\t\t\t\t\t")[0];
+      const imgUrl = $(this).find(".img-loop").attr("src");
+      const imgHover = $(this).find(".img-hover").attr("src");
+      allProducts.push({
+        name,
+        href,
+        price,
+        imgUrl,
+        imgHoverUrl: imgHover,
       });
-      resp.status(200).json(allProducts);
     });
+    resp.status(200).json(allProducts);
   } catch (error) {
     resp.status(500).json(error);
   }
