@@ -30,7 +30,7 @@ router.get("/", async (req, resp) => {
         imgHoverUrl: imgHover,
       });
     });
-    resp.status(200).json(allProducts);
+    await resp.status(200).json(allProducts);
   } catch (error) {
     resp.status(500).json(error);
   }
