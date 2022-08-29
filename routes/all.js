@@ -4,13 +4,13 @@ const router = express.Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-// const url = "https://hades.vn/collections/all#l=vi";
+const url = "https://hades.vn/collections/all#l=vi";
 
 // [GET] all products
 router.get("/", async (req, resp) => {
   const allProducts = [];
   try {
-    const res = await axios("https://hades.vn/collections/all#l=vi");
+    const res = await axios(url);
     const html = await res.data;
     const $ = cheerio.load(html);
     $(".product-block", html).each(function () {
