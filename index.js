@@ -7,12 +7,6 @@ const bodyParser = require("body-parser");
 
 const url = "https://hades.vn/products/";
 
-app.use(
-  cors({
-    origin: ["https://hades.vn/products"],
-    optionsSuccessStatus: 200,
-  })
-);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
   bodyParser.urlencoded({
