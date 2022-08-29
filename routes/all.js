@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-// const axios = require("axios");
+const axios = require("axios");
 const cheerio = require("cheerio");
-import fetch from "node-fetch";
 
-const url = "https://hades.vn/collections/all#l=vi";
+// const url = "https://hades.vn/collections/all#l=vi";
 
 // [GET] all products
 router.get("/", async (req, resp) => {
   const allProducts = [];
   try {
-    const res = await fetch(url);
+    const res = await axios("https://hades.vn/collections/all#l=vi");
     const html = await res.data;
     const $ = cheerio.load(html);
     $(".product-block", html).each(function () {
