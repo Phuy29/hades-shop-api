@@ -7,7 +7,12 @@ const bodyParser = require("body-parser");
 
 // const url = "https://hades.vn/products/";
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://hades.vn/collections/all#l=vi",
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
   bodyParser.urlencoded({
@@ -30,12 +35,12 @@ app.get("/", (req, res) => {
 });
 
 app.use("/collections/all", routerAll);
-app.use("/collections/top", routerTop);
-app.use("/collections/bottom", routerBottom);
-app.use("/collections/outerwear", routerOuterwear);
-app.use("/collections/footwear", routerFootwear);
-app.use("/collections/hat", routerHat);
-app.use("/collections/bag", routerBag);
+// app.use("/collections/top", routerTop);
+// app.use("/collections/bottom", routerBottom);
+// app.use("/collections/outerwear", routerOuterwear);
+// app.use("/collections/footwear", routerFootwear);
+// app.use("/collections/hat", routerHat);
+// app.use("/collections/bag", routerBag);
 
 // app.get("/products/:product", (req, resp) => {
 //   let productUrl = url + req.params.product + "#l=vi";
