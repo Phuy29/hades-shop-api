@@ -17,13 +17,13 @@ app.use(
   })
 );
 
-const routerAll = require("./routes/all");
-const routerTop = require("./routes/top");
-const routerBottom = require("./routes/bottom");
-const routerOuterwear = require("./routes/outerwear");
-const routerFootwear = require("./routes/footwear");
-const routerHat = require("./routes/hat");
-const routerBag = require("./routes/bag");
+const routerAll = require("./api/all");
+const routerTop = require("./api/top");
+const routerBottom = require("./api/bottom");
+const routerOuterwear = require("./api/outerwear");
+const routerFootwear = require("./api/footwear");
+const routerHat = require("./api/hat");
+const routerBag = require("./api/bag");
 
 app.get("/", (req, res) => {
   res.json("Hello");
