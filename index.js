@@ -5,8 +5,9 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const bodyParser = require("body-parser");
 
-const url = "https://hades.vn/products/";
+// const url = "https://hades.vn/products/";
 
+app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
   bodyParser.urlencoded({
@@ -36,43 +37,43 @@ app.use("/collections/footwear", routerFootwear);
 app.use("/collections/hat", routerHat);
 app.use("/collections/bag", routerBag);
 
-app.get("/products/:product", (req, resp) => {
-  let productUrl = url + req.params.product + "#l=vi";
+// app.get("/products/:product", (req, resp) => {
+//   let productUrl = url + req.params.product + "#l=vi";
 
-  try {
-    axios(productUrl).then((res) => {
-      const html = res.data;
-      const $ = cheerio.load(html);
+//   try {
+//     axios(productUrl).then((res) => {
+//       const html = res.data;
+//       const $ = cheerio.load(html);
 
-      const galleries = [];
+//       const galleries = [];
 
-      $(".product-detail-images-image-wrapper").each(function () {
-        const gallery = $(this).find("img").attr("src");
-        galleries.push(gallery);
-      });
+//       $(".product-detail-images-image-wrapper").each(function () {
+//         const gallery = $(this).find("img").attr("src");
+//         galleries.push(gallery);
+//       });
 
-      const newArrival = $(".product-info > div > img").attr("src");
+//       const newArrival = $(".product-info > div > img").attr("src");
 
-      const price = $(".product-price > .pro-price").html();
+//       const price = $(".product-price > .pro-price").html();
 
-      const name = $("#title-local").html();
+//       const name = $("#title-local").html();
 
-      product = [
-        {
-          name: name,
-          price: price,
-          galleries: galleries,
-          newArrival: Boolean(newArrival),
-        },
-      ];
-      resp.status(200).json(product);
-    });
-  } catch (error) {
-    resp.status(500).json(error);
-  }
-});
+//       product = [
+//         {
+//           name: name,
+//           price: price,
+//           galleries: galleries,
+//           newArrival: Boolean(newArrival),
+//         },
+//       ];
+//       resp.status(200).json(product);
+//     });
+//   } catch (error) {
+//     resp.status(500).json(error);
+//   }
+// });
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log("Server is running ...");
