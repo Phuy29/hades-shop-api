@@ -12,7 +12,7 @@ router.get("/", async (req, resp) => {
   try {
     const res = await axios(url);
     const html = await res.data;
-    const $ = cheerio.load(html);
+    const $ = await cheerio.load(html);
     $(".product-block", html).each(function () {
       const name = $(this).find(".pro-name > a").attr("title");
       const href = $(this).find(".pro-name > a").attr("href");
